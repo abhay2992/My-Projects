@@ -1,0 +1,28 @@
+CREATE TABLE  "customer" 
+   (	"customer_CODE" NUMBER, 
+	"customer_FIRSTNAME" VARCHAR2(4000), 
+	"customer_LASTTNAME" VARCHAR2(4000), 
+	"COMPANY_NAME" VARCHAR2(4000), 
+	"ADDRESS" VARCHAR2(4000), 
+	"PHONE" NUMBER, 
+	"MOBILE_NUMBER" NUMBER, 
+	"E_MAIL" VARCHAR2(4000), 
+	 CONSTRAINT "customer_PK" PRIMARY KEY ("customer_CODE") ENABLE
+   )
+/
+
+-----------------------------
+
+
+CREATE TABLE customer
+   (	"customer_CODE" NUMBER primary key,  
+	"customer_FIRSTNAME" VARCHAR2(4000), 
+	"customer_LASTTNAME" VARCHAR2(4000), 
+	"COMPANY_NAME" VARCHAR2(4000), 
+	"ADDRESS" VARCHAR2(4000), 
+	"PHONE" NUMBER, 
+	"MOBILE_NUMBER" NUMBER, 
+	"E_MAIL" VARCHAR2(4000)	 
+   )
+
+;

@@ -1,0 +1,150 @@
+
+
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.awt.*;
+import java.sql.*;
+
+public class customer_interest  extends JFrame implements ActionListener,ItemListener
+{
+ JLabel  l0,l1,l2,l6,ldate;
+ JTextField t0,t1,t2,t6,tdate;
+ JButton b;
+ JPanel p,p0,p1,p2,p6,p_main,pdate;
+ ResultSet rs,rrs;
+ GridLayout g;
+ FlowLayout f,f1;
+ 
+ public customer_interest (){
+	    l0=new JLabel("Account No");
+	    l1=new JLabel("Customer Firstname");
+		l2=new JLabel("Customer Lastname");
+		l6=new JLabel("Current Balance");
+		ldate=new JLabel("Last Date of Transaction");
+		
+		t0=new JTextField(15);
+		t1=new JTextField(15);
+		t2=new JTextField(15);
+		t6=new JTextField(15);
+		tdate=new JTextField(15);
+		b=new JButton("Get Details");
+		
+		g=new GridLayout(5,2);
+		p_main=new JPanel(g);
+		f=new FlowLayout(FlowLayout.LEFT);
+		f1=new FlowLayout(FlowLayout.RIGHT);
+		p=new JPanel(f);
+		p0=new JPanel();
+		p1=new JPanel();
+		p2=new JPanel();
+		p6=new JPanel();
+		pdate=new JPanel();
+
+		
+		p0.add(t0);
+		p0.add(b);
+		p1.add(t1);
+		p2.add(t2);
+		p6.add(t6);
+		pdate.add(tdate);
+		
+		p_main.add(l0);
+		p_main.add(p0);
+		p_main.add(l1);
+		p_main.add(p1);
+		p_main.add(l2);
+		p_main.add(p2);
+		p_main.add(l6);
+		p_main.add(p6);
+		
+		p_main.add(ldate);
+		p_main.add(pdate);
+		add(p_main);
+		
+		b.addActionListener(this);
+ }
+     public static void main(String args[])
+    {
+    	 customer_interest  ci=new  customer_interest();
+ 	  ci.setVisible(true);
+ 	  ci.setSize(500,500);
+ 	  ci.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 	  ci.setTitle("Customer Interest/BANKING SYSTEM/ SARANG KAUR(B.tech CSE 3rd yr GNDU Amritsar) copyright protection");
+ 	
+ }
+public void actionPerformed(ActionEvent arg0) {
+	
+	if(arg0.getSource()==b)
+			{
+		if(t0.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(this,"Fill Customer Account");
+			
+		}
+		else
+		{
+			try{
+				DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+							Connection con=null;
+					String	str1="jdbc:oracle:thin:@localhost:1521:";
+							con=DriverManager.getConnection(str1,"system","sarang");
+							System.out.print("Connection done");
+							
+							
+							
+							String sp="select * from customer_account,transc where customer_account.customer_id=? and transc.cid=?";
+							PreparedStatement ps=con.prepareStatement(sp);
+							ps.setString(1,t0.getText());
+							ps.setString(2,t0.getText());
+							
+							 rrs=ps.executeQuery();
+							
+							if(rrs.next())
+								{
+								String []tt=new String[17];
+								tt[0]=rrs.getString(1);
+								tt[1]=rrs.getString(2);
+								tt[2]=rrs.getString(3);
+								tt[14]=rrs.getString(16);
+								tt[15]=rrs.getString(17);
+								
+								System.out.print(tt[0]+"   "+tt[1]+" "+tt[2]+" "+tt[14]+" "+tt[15]);
+								
+		                     t0.setText(tt[0]);
+		                     t1.setText(tt[1]);
+		                     t2.setText(tt[2]);
+		                     t6.setText(tt[14]);
+		                     tdate.setText(tt[15]);
+		                  
+		                  
+		                  
+		                  
+		                  
+		                  
+		                  
+								
+								
+								
+								
+								
+								}
+							}
+			catch(Exception e)
+			{
+			e.printStackTrace();	
+			}
+			
+		}
+		
+	}
+	
+}
+public void itemStateChanged(ItemEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}}

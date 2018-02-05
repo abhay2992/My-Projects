@@ -1,0 +1,21 @@
+  String sp1="select * from transaction where cid=?";
+						PreparedStatement ps1=con.prepareStatement(sp1);
+					    ps1.setString(1,s1);
+						rs1=ps1.executeQuery();
+						System.out.print("dd2cddfdf");
+					if(rs1.next())
+					{
+					
+							abb[0]=rs1.getString(1);
+							
+							//System.out.print("aaa");
+							abb[1]=rs1.getString(2);
+							abb[2]=rs1.getString(3);
+							abb[3]=rs1.getString(4);
+							abb[4]=rs1.getString(5);
+							abb[5]=rs1.getString(6);
+							
+							abb[6]=rs1.getString(7);
+							abb[7]=rs1.getString(8);
+							//JOptionPane.showMessageDialog(this,"sasa");
+						}

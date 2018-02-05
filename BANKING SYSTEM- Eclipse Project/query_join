@@ -1,0 +1,1 @@
+select * from transaction,customer_account where transaction.cid=customer_account.customer_id;
